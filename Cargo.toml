@@ -1,0 +1,31 @@
+[package]
+name = "stedi-rs"
+version = "0.0.1"
+edition = "2024"
+authors = [
+    "Nikolas Yanek-Chrones <nik@sunnyhealth.ai>", "Ayush Tomar <ayush@sunnyhealth.ai>",
+]
+description = "Community-maintained Rust SDK for Stedi's Healthcare Eligibility API"
+documentation = "https://docs.rs/stedi-rs"
+homepage = "https://www.stedi.com/docs/healthcare"
+repository = "https://github.com/sunnyhealthai/stedi-rs"
+license = "MIT"
+keywords = ["healthcare", "eligibility", "insurance", "medical", "api"]
+categories = ["api-bindings"]
+readme = "README.md"
+
+[features]
+default = []
+benefits-calculator = []
+
+[dependencies]
+reqwest = { version = "0.12.24", default-features = false, features = ["json"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.145"
+url = "2.5.7"
+
+[dev-dependencies]
+tokio = { version = "1.48.0", features = ["full"] }
+reqwest = { version = "0.12.24", default-features = false, features = [
+    "rustls-tls",
+] }

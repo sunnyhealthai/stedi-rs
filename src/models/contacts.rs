@@ -1,0 +1,25 @@
+use serde::{Deserialize, Serialize};
+
+/// Contacts : Contacts
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+pub struct Contacts {
+    /// The type of communication number provided.  Payers may sometimes return other non-compliant values.
+    #[serde(rename = "communicationMode", skip_serializing_if = "Option::is_none")]
+    pub communication_mode: Option<super::CommunicationMode>,
+    /// The communication number referenced in `communicationMode`. It includes the country or area code when applicable.     Note that phone numbers are formatted as AAABBBCCCC, where AAA represents the area code, BBB represents the telephone number prefix, and CCCC represents the telephone number. Phone numbers are provided without separators, such as dashes or parentheses. For example, `5551123345` for `555-112-3345`.
+    #[serde(
+        rename = "communicationNumber",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub communication_number: Option<String>,
+}
+
+impl Contacts {
+    /// Contacts
+    pub fn new() -> Contacts {
+        Contacts {
+            communication_mode: None,
+            communication_number: None,
+        }
+    }
+}
