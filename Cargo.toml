@@ -1,6 +1,6 @@
 [package]
 name = "stedi-rs"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2024"
 authors = [
     "Nikolas Yanek-Chrones <nik@sunnyhealth.ai>", "Ayush Tomar <ayush@sunnyhealth.ai>",
@@ -19,13 +19,13 @@ default = []
 benefits-calculator = []
 
 [dependencies]
-reqwest = { version = "0.12.24", default-features = false, features = ["json"] }
+reqwest = { version = "0.13.1", default-features = false, features = ["json"] }
 serde = { version = "1.0.228", features = ["derive"] }
-serde_json = "1.0.145"
-url = "2.5.7"
+serde_json = "1.0.149"
+url = "2.5.8"
 
 [dev-dependencies]
-tokio = { version = "1.48.0", features = ["full"] }
-reqwest = { version = "0.12.24", default-features = false, features = [
-    "rustls-tls",
+tokio = { version = "1.49.0", features = ["full"] }
+reqwest = { version = "0.13.1", default-features = false, features = [
+    "rustls",
 ] }

@@ -29,8 +29,8 @@ Click to show Cargo.toml.
 
 ```toml
 [dependencies]
-stedi-rs = "0.0.1"
-tokio = { version = "1.48", features = ["full"] }
+stedi-rs = "0.0.2"
+tokio = { version = "1.49", features = ["full"] }
 ```
 
 </details>
