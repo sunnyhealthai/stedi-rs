@@ -813,6 +813,95 @@ pub enum ResponseEligibilityServiceType {
     /// Temporomandibular Joint Dysfunction - TMJ (temporomandibular joint) dysfunction treatment services.
     #[serde(rename = "Temporomandibular Joint Dysfunction")]
     TemporomandibularJointDysfunction,
+    #[serde(rename = "Specialty Pharmacy")]
+    SpecialtyPharmacy,
+    #[serde(rename = "Durable Medical Equipment (New)")]
+    DurableMedicalEquipmentNew,
+    #[serde(rename = "Diagnostic Imaging")]
+    DiagnosticImaging,
+    #[serde(rename = "Fertility Preservation")]
+    FertilityPreservation,
+    #[serde(rename = "Applied Behavioral Analysis Therapy")]
+    AppliedBehavioralAnalysisTherapy,
+    #[serde(rename = "Non-Medical Equipment")]
+    NonMedicalEquipment,
+    #[serde(rename = "Psychiatric Emergency")]
+    PsychiatricEmergency,
+    #[serde(rename = "Step Down Unit")]
+    StepDownUnit,
+    #[serde(rename = "Skilled Nursing Facility Head Level")]
+    SkilledNursingFacilityHeadLevel,
+    #[serde(rename = "Skilled Nursing Facility Ventilator Level")]
+    SkilledNursingFacilityVentilatorLevel,
+    #[serde(rename = "Level of Care 1")]
+    LevelOfCare1,
+    #[serde(rename = "Level of Care 2")]
+    LevelOfCare2,
+    #[serde(rename = "Level of Care 3")]
+    LevelOfCare3,
+    #[serde(rename = "Level of Care 4")]
+    LevelOfCare4,
+    #[serde(rename = "Radiographs")]
+    Radiographs,
+    #[serde(rename = "Fixed Prosthodontics")]
+    FixedProsthodontics,
+    #[serde(rename = "Removable Prosthodontics")]
+    RemovableProsthodontics,
+    #[serde(rename = "Intraoral Images - Complete Series")]
+    IntraoralImagesCompleteSeries,
+    #[serde(rename = "Oral Evaluation (E17)")]
+    OralEvaluationE17,
+    #[serde(rename = "Dental Prophylaxis (E18)")]
+    DentalProphylaxisE18,
+    #[serde(rename = "Panoramic Images")]
+    PanoramicImages,
+    #[serde(rename = "Sealants (E20)")]
+    SealantsE20,
+    #[serde(rename = "Fluoride Treatments (E21)")]
+    FluorideTreatmentsE21,
+    #[serde(rename = "Dental Implants (E22)")]
+    DentalImplantsE22,
+    #[serde(rename = "Temporomandibular Joint Dysfunction (E23)")]
+    TemporomandibularJointDysfunctionE23,
+    #[serde(rename = "Long Term Care Pharmacy")]
+    LongTermCarePharmacy,
+    #[serde(rename = "Comprehensive Medication Therapy Management")]
+    ComprehensiveMedicationTherapyManagement,
+    #[serde(rename = "Targeted Medication Therapy Management")]
+    TargetedMedicationTherapyManagement,
+    #[serde(rename = "Dietary/Nutritional Services")]
+    DietaryNutritionalServices,
+    #[serde(rename = "Intensive Cardiac Rehabilitation")]
+    IntensiveCardiacRehabilitation,
+    #[serde(rename = "Convenience Care")]
+    ConvenienceCare,
+    #[serde(rename = "Telemedicine")]
+    Telemedicine,
+    #[serde(rename = "Pharmacist Services")]
+    PharmacistServices,
+    #[serde(rename = "Diabetic Education")]
+    DiabeticEducation,
+    #[serde(rename = "Early Intervention")]
+    EarlyIntervention,
+    #[serde(rename = "Medically Tailored Meals")]
+    MedicallyTailoredMeals,
+    #[serde(rename = "Serious Mental Health")]
+    SeriousMentalHealth,
+    #[serde(rename = "Remote Patient Monitoring")]
+    RemotePatientMonitoring,
+    #[serde(rename = "Remote Therapeutic Monitoring")]
+    RemoteTherapeuticMonitoring,
+    #[serde(rename = "Special Supplemental Benefits")]
+    SpecialSupplementalBenefits,
+    #[serde(rename = "Positron Emission Tomography (PET) Scan")]
+    PositronEmissionTomographyPetScan,
+    #[serde(rename = "CAT Scan")]
+    CatScan,
+    #[serde(rename = "IV Therapy")]
+    IvTherapy,
+    /// Unknown / unrecognized service type name from payer response
+    #[serde(other)]
+    Unknown,
 }
 
 impl std::fmt::Display for ResponseEligibilityServiceType {
@@ -1027,6 +1116,50 @@ impl std::fmt::Display for ResponseEligibilityServiceType {
             Self::Sealants => write!(f, "Sealants"),
             Self::DentalImplants => write!(f, "Dental Implants"),
             Self::TemporomandibularJointDysfunction => write!(f, "Temporomandibular Joint Dysfunction"),
+            Self::SpecialtyPharmacy => write!(f, "Specialty Pharmacy"),
+            Self::DurableMedicalEquipmentNew => write!(f, "Durable Medical Equipment (New)"),
+            Self::DiagnosticImaging => write!(f, "Diagnostic Imaging"),
+            Self::FertilityPreservation => write!(f, "Fertility Preservation"),
+            Self::AppliedBehavioralAnalysisTherapy => write!(f, "Applied Behavioral Analysis Therapy"),
+            Self::NonMedicalEquipment => write!(f, "Non-Medical Equipment"),
+            Self::PsychiatricEmergency => write!(f, "Psychiatric Emergency"),
+            Self::StepDownUnit => write!(f, "Step Down Unit"),
+            Self::SkilledNursingFacilityHeadLevel => write!(f, "Skilled Nursing Facility Head Level"),
+            Self::SkilledNursingFacilityVentilatorLevel => write!(f, "Skilled Nursing Facility Ventilator Level"),
+            Self::LevelOfCare1 => write!(f, "Level of Care 1"),
+            Self::LevelOfCare2 => write!(f, "Level of Care 2"),
+            Self::LevelOfCare3 => write!(f, "Level of Care 3"),
+            Self::LevelOfCare4 => write!(f, "Level of Care 4"),
+            Self::Radiographs => write!(f, "Radiographs"),
+            Self::FixedProsthodontics => write!(f, "Fixed Prosthodontics"),
+            Self::RemovableProsthodontics => write!(f, "Removable Prosthodontics"),
+            Self::IntraoralImagesCompleteSeries => write!(f, "Intraoral Images - Complete Series"),
+            Self::OralEvaluationE17 => write!(f, "Oral Evaluation (E17)"),
+            Self::DentalProphylaxisE18 => write!(f, "Dental Prophylaxis (E18)"),
+            Self::PanoramicImages => write!(f, "Panoramic Images"),
+            Self::SealantsE20 => write!(f, "Sealants (E20)"),
+            Self::FluorideTreatmentsE21 => write!(f, "Fluoride Treatments (E21)"),
+            Self::DentalImplantsE22 => write!(f, "Dental Implants (E22)"),
+            Self::TemporomandibularJointDysfunctionE23 => write!(f, "Temporomandibular Joint Dysfunction (E23)"),
+            Self::LongTermCarePharmacy => write!(f, "Long Term Care Pharmacy"),
+            Self::ComprehensiveMedicationTherapyManagement => write!(f, "Comprehensive Medication Therapy Management"),
+            Self::TargetedMedicationTherapyManagement => write!(f, "Targeted Medication Therapy Management"),
+            Self::DietaryNutritionalServices => write!(f, "Dietary/Nutritional Services"),
+            Self::IntensiveCardiacRehabilitation => write!(f, "Intensive Cardiac Rehabilitation"),
+            Self::ConvenienceCare => write!(f, "Convenience Care"),
+            Self::Telemedicine => write!(f, "Telemedicine"),
+            Self::PharmacistServices => write!(f, "Pharmacist Services"),
+            Self::DiabeticEducation => write!(f, "Diabetic Education"),
+            Self::EarlyIntervention => write!(f, "Early Intervention"),
+            Self::MedicallyTailoredMeals => write!(f, "Medically Tailored Meals"),
+            Self::SeriousMentalHealth => write!(f, "Serious Mental Health"),
+            Self::RemotePatientMonitoring => write!(f, "Remote Patient Monitoring"),
+            Self::RemoteTherapeuticMonitoring => write!(f, "Remote Therapeutic Monitoring"),
+            Self::SpecialSupplementalBenefits => write!(f, "Special Supplemental Benefits"),
+            Self::PositronEmissionTomographyPetScan => write!(f, "Positron Emission Tomography (PET) Scan"),
+            Self::CatScan => write!(f, "CAT Scan"),
+            Self::IvTherapy => write!(f, "IV Therapy"),
+            Self::Unknown => write!(f, "Unknown"),
         }
     }
 }

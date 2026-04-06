@@ -633,6 +633,135 @@ pub enum ResponseEligibilityServiceTypeCode {
     /// Temporomandibular Joint Dysfunction
     #[serde(rename = "EK")]
     TemporomandibularJointDysfunction,
+    /// Specialty Pharmacy
+    #[serde(rename = "EB")]
+    SpecialtyPharmacy,
+    /// Durable Medical Equipment (New)
+    #[serde(rename = "EC")]
+    DurableMedicalEquipmentNew,
+    /// Diagnostic Imaging
+    #[serde(rename = "E11")]
+    DiagnosticImaging,
+    /// Fertility Preservation
+    #[serde(rename = "EG")]
+    FertilityPreservation,
+    /// Applied Behavioral Analysis Therapy
+    #[serde(rename = "E0")]
+    AppliedBehavioralAnalysisTherapy,
+    /// Non-Medical Equipment
+    #[serde(rename = "E1")]
+    NonMedicalEquipment,
+    /// Psychiatric Emergency
+    #[serde(rename = "E2")]
+    PsychiatricEmergency,
+    /// Step Down Unit
+    #[serde(rename = "E3")]
+    StepDownUnit,
+    /// Skilled Nursing Facility Head Level
+    #[serde(rename = "E4")]
+    SkilledNursingFacilityHeadLevel,
+    /// Skilled Nursing Facility Ventilator Level
+    #[serde(rename = "E5")]
+    SkilledNursingFacilityVentilatorLevel,
+    /// Level of Care 1
+    #[serde(rename = "E6")]
+    LevelOfCare1,
+    /// Level of Care 2
+    #[serde(rename = "E7")]
+    LevelOfCare2,
+    /// Level of Care 3
+    #[serde(rename = "E8")]
+    LevelOfCare3,
+    /// Level of Care 4
+    #[serde(rename = "E9")]
+    LevelOfCare4,
+    /// Radiographs
+    #[serde(rename = "E10")]
+    Radiographs,
+    /// Fixed Prosthodontics
+    #[serde(rename = "E14")]
+    FixedProsthodontics,
+    /// Removable Prosthodontics
+    #[serde(rename = "E15")]
+    RemovableProsthodontics,
+    /// Intraoral Images Complete Series
+    #[serde(rename = "E16")]
+    IntraoralImagesCompleteSeries,
+    /// Oral Evaluation (E17)
+    #[serde(rename = "E17")]
+    OralEvaluationE17,
+    /// Dental Prophylaxis (E18)
+    #[serde(rename = "E18")]
+    DentalProphylaxisE18,
+    /// Panoramic Images
+    #[serde(rename = "E19")]
+    PanoramicImages,
+    /// Sealants (E20)
+    #[serde(rename = "E20")]
+    SealantsE20,
+    /// Fluoride Treatments (E21)
+    #[serde(rename = "E21")]
+    FluorideTreatmentsE21,
+    /// Dental Implants (E22)
+    #[serde(rename = "E22")]
+    DentalImplantsE22,
+    /// Temporomandibular Joint Dysfunction (E23)
+    #[serde(rename = "E23")]
+    TemporomandibularJointDysfunctionE23,
+    /// Long Term Care Pharmacy
+    #[serde(rename = "E25")]
+    LongTermCarePharmacy,
+    /// Comprehensive Medication Therapy Management
+    #[serde(rename = "E26")]
+    ComprehensiveMedicationTherapyManagement,
+    /// Targeted Medication Therapy Management
+    #[serde(rename = "E27")]
+    TargetedMedicationTherapyManagement,
+    /// Dietary/Nutritional Services
+    #[serde(rename = "E28")]
+    DietaryNutritionalServices,
+    /// Intensive Cardiac Rehabilitation
+    #[serde(rename = "E33")]
+    IntensiveCardiacRehabilitation,
+    /// Convenience Care
+    #[serde(rename = "E36")]
+    ConvenienceCare,
+    /// Telemedicine
+    #[serde(rename = "E37")]
+    Telemedicine,
+    /// Pharmacist Services
+    #[serde(rename = "E38")]
+    PharmacistServices,
+    /// Diabetic Education
+    #[serde(rename = "E39")]
+    DiabeticEducation,
+    /// Early Intervention
+    #[serde(rename = "E40")]
+    EarlyIntervention,
+    /// Medically Tailored Meals
+    #[serde(rename = "EM")]
+    MedicallyTailoredMeals,
+    /// Serious Mental Health
+    #[serde(rename = "SMH")]
+    SeriousMentalHealth,
+    /// Remote Patient Monitoring
+    #[serde(rename = "UP")]
+    RemotePatientMonitoring,
+    /// Remote Therapeutic Monitoring
+    #[serde(rename = "UR")]
+    RemoteTherapeuticMonitoring,
+    /// Special Supplemental Benefits
+    #[serde(rename = "US")]
+    SpecialSupplementalBenefits,
+    /// Positron Emission Tomography (PET) Scan
+    #[serde(rename = "PE")]
+    PositronEmissionTomographyPetScan,
+    /// IV Therapy
+    #[serde(rename = "ED")]
+    CatScan,
+    /// Unknown / unrecognized service type code from payer response
+    #[serde(other)]
+    Unknown,
 }
 
 impl std::fmt::Display for ResponseEligibilityServiceTypeCode {
@@ -847,6 +976,49 @@ impl std::fmt::Display for ResponseEligibilityServiceTypeCode {
             Self::Sealants => write!(f, "EH"),
             Self::DentalImplants => write!(f, "EJ"),
             Self::TemporomandibularJointDysfunction => write!(f, "EK"),
+            Self::SpecialtyPharmacy => write!(f, "EB"),
+            Self::DurableMedicalEquipmentNew => write!(f, "EC"),
+            Self::DiagnosticImaging => write!(f, "E11"),
+            Self::FertilityPreservation => write!(f, "EG"),
+            Self::AppliedBehavioralAnalysisTherapy => write!(f, "E0"),
+            Self::NonMedicalEquipment => write!(f, "E1"),
+            Self::PsychiatricEmergency => write!(f, "E2"),
+            Self::StepDownUnit => write!(f, "E3"),
+            Self::SkilledNursingFacilityHeadLevel => write!(f, "E4"),
+            Self::SkilledNursingFacilityVentilatorLevel => write!(f, "E5"),
+            Self::LevelOfCare1 => write!(f, "E6"),
+            Self::LevelOfCare2 => write!(f, "E7"),
+            Self::LevelOfCare3 => write!(f, "E8"),
+            Self::LevelOfCare4 => write!(f, "E9"),
+            Self::Radiographs => write!(f, "E10"),
+            Self::FixedProsthodontics => write!(f, "E14"),
+            Self::RemovableProsthodontics => write!(f, "E15"),
+            Self::IntraoralImagesCompleteSeries => write!(f, "E16"),
+            Self::OralEvaluationE17 => write!(f, "E17"),
+            Self::DentalProphylaxisE18 => write!(f, "E18"),
+            Self::PanoramicImages => write!(f, "E19"),
+            Self::SealantsE20 => write!(f, "E20"),
+            Self::FluorideTreatmentsE21 => write!(f, "E21"),
+            Self::DentalImplantsE22 => write!(f, "E22"),
+            Self::TemporomandibularJointDysfunctionE23 => write!(f, "E23"),
+            Self::LongTermCarePharmacy => write!(f, "E25"),
+            Self::ComprehensiveMedicationTherapyManagement => write!(f, "E26"),
+            Self::TargetedMedicationTherapyManagement => write!(f, "E27"),
+            Self::DietaryNutritionalServices => write!(f, "E28"),
+            Self::IntensiveCardiacRehabilitation => write!(f, "E33"),
+            Self::ConvenienceCare => write!(f, "E36"),
+            Self::Telemedicine => write!(f, "E37"),
+            Self::PharmacistServices => write!(f, "E38"),
+            Self::DiabeticEducation => write!(f, "E39"),
+            Self::EarlyIntervention => write!(f, "E40"),
+            Self::MedicallyTailoredMeals => write!(f, "EM"),
+            Self::SeriousMentalHealth => write!(f, "SMH"),
+            Self::RemotePatientMonitoring => write!(f, "UP"),
+            Self::RemoteTherapeuticMonitoring => write!(f, "UR"),
+            Self::SpecialSupplementalBenefits => write!(f, "US"),
+            Self::PositronEmissionTomographyPetScan => write!(f, "PE"),
+            Self::CatScan => write!(f, "ED"),
+            Self::Unknown => write!(f, "Unknown"),
         }
     }
 }
