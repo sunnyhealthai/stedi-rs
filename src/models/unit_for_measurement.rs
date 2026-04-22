@@ -56,6 +56,13 @@ pub enum UnitForMeasurement {
     #[serde(rename = "Visits")]
     Visits,
 
+    /// Visit - Singular form of `Visits` as returned by some payers.
+    ///
+    /// Non-standard variant accepted for compatibility with payers that emit the singular
+    /// "Visit" rather than the X12-standard "Visits".
+    #[serde(rename = "Visit")]
+    Visit,
+
     /// Week - Represents a time period measured in weeks
     ///
     /// Typically used for:
@@ -80,6 +87,10 @@ pub enum UnitForMeasurement {
     /// Stedi Note: Used for annual benefit periods and long-term coverage specifications
     #[serde(rename = "Years")]
     Years,
+
+    /// Catch-all for non-standard or unrecognized unit values returned by payers.
+    #[serde(other)]
+    Unknown,
 }
 
 impl std::fmt::Display for UnitForMeasurement {
@@ -88,8 +99,10 @@ impl std::fmt::Display for UnitForMeasurement {
             Self::Days => write!(f, "Days"),
             Self::Months => write!(f, "Months"),
             Self::Visits => write!(f, "Visits"),
+            Self::Visit => write!(f, "Visit"),
             Self::Week => write!(f, "Week"),
             Self::Years => write!(f, "Years"),
+            Self::Unknown => write!(f, "Unknown"),
         }
     }
 }

@@ -67,6 +67,17 @@ pub enum BenefitsServiceDeliveryQuantityQualifier {
     /// X12 HIPAA Code: VS (Visits)
     #[serde(rename = "Visits")]
     Visits,
+
+    /// Represents a quantity measured in visit counts (singular form).
+    ///
+    /// Non-standard variant accepted for compatibility with payers that emit the singular
+    /// "Visit" rather than the X12-standard "Visits".
+    #[serde(rename = "Visit")]
+    Visit,
+
+    /// Catch-all for non-standard or unrecognized qualifier values returned by payers.
+    #[serde(other)]
+    Unknown,
 }
 
 impl std::fmt::Display for BenefitsServiceDeliveryQuantityQualifier {
@@ -77,6 +88,8 @@ impl std::fmt::Display for BenefitsServiceDeliveryQuantityQualifier {
             Self::Hours => write!(f, "Hours"),
             Self::Month => write!(f, "Month"),
             Self::Visits => write!(f, "Visits"),
+            Self::Visit => write!(f, "Visit"),
+            Self::Unknown => write!(f, "Unknown"),
         }
     }
 }

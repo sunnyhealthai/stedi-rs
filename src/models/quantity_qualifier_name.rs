@@ -189,12 +189,22 @@ pub enum QuantityQualifierName {
     /// visit limits.
     #[serde(rename = "Visits")]
     Visits,
+    /// Visit - Singular form of `Visits` as returned by some payers.
+    ///
+    /// Non-standard variant accepted for compatibility with payers that emit the singular
+    /// "Visit" rather than the X12-standard "Visits".
+    #[serde(rename = "Visit")]
+    Visit,
     /// Years - Number of years for time-based benefit measurements.
     ///
     /// Used to specify quantities measured in years, such as annual limits, years of
     /// coverage, or years until benefit renewal.
     #[serde(rename = "Years")]
     Years,
+
+    /// Catch-all for non-standard or unrecognized qualifier names returned by payers.
+    #[serde(other)]
+    Unknown,
 }
 
 impl std::fmt::Display for QuantityQualifierName {
@@ -217,7 +227,9 @@ impl std::fmt::Display for QuantityQualifierName {
             Self::AgeCommaHighValue => write!(f, "Age, High Value"),
             Self::AgeCommaLowValue => write!(f, "Age, Low Value"),
             Self::Visits => write!(f, "Visits"),
+            Self::Visit => write!(f, "Visit"),
             Self::Years => write!(f, "Years"),
+            Self::Unknown => write!(f, "Unknown"),
         }
     }
 }
