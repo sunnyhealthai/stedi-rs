@@ -1,3 +1,21 @@
+use std::sync::Arc;
+
+/// A callback invoked on every outbound `reqwest::Request` before it is sent.
+///
+/// Use this to inject cross-cutting headers such as OpenTelemetry trace context:
+///
+/// ```rust,ignore
+/// use stedi_rs::apis::configuration::Configuration;
+///
+/// let config = Configuration {
+///     request_interceptor: Some(Arc::new(|req| {
+///         sh_tracing::inject_trace_context(req.headers_mut());
+///     })),
+///     ..Configuration::with_api_key("key")
+/// };
+/// ```
+pub type RequestInterceptor = Arc<dyn Fn(&mut reqwest::Request) + Send + Sync>;
+
 /// Configuration settings for the Stedi Healthcare API client.
 ///
 /// This struct contains all the necessary configuration for making API requests to Stedi,
@@ -20,7 +38,7 @@
 /// let mut config = Configuration::default();
 /// config.bearer_access_token = Some(format!("Key {}", "your-api-key-here"));
 /// ```
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct Configuration {
     /// The base URL for the Stedi Healthcare API (defaults to <https://healthcare.us.stedi.com>)
     pub base_path: String,
@@ -46,6 +64,21 @@ pub struct Configuration {
     /// API key configuration for Stedi authentication
     #[doc(hidden)]
     pub api_key: Option<ApiKey>,
+
+    /// Optional callback invoked on every outbound request before it is sent.
+    /// Useful for injecting trace-context or other cross-cutting headers.
+    pub request_interceptor: Option<RequestInterceptor>,
+}
+
+impl std::fmt::Debug for Configuration {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Configuration")
+            .field("base_path", &self.base_path)
+            .field("user_agent", &self.user_agent)
+            .field("bearer_access_token", &self.bearer_access_token.as_ref().map(|_| "[REDACTED]"))
+            .field("request_interceptor", &self.request_interceptor.as_ref().map(|_| "Some(...)"))
+            .finish()
+    }
 }
 
 /// Basic authentication tuple containing username and optional password.
@@ -115,6 +148,7 @@ impl Default for Configuration {
             oauth_access_token: None,
             bearer_access_token: None,
             api_key: None,
+            request_interceptor: None,
         }
     }
 }

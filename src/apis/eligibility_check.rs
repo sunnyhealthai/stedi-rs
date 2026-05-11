@@ -127,7 +127,10 @@ pub async fn eligibility_check(
 
     req_builder = req_builder.json(&p_eligibility_check_request_content);
 
-    let req = req_builder.build()?;
+    let mut req = req_builder.build()?;
+    if let Some(ref interceptor) = configuration.request_interceptor {
+        interceptor(&mut req);
+    }
     let resp = configuration.client.execute(req).await?;
 
     let status = resp.status();
