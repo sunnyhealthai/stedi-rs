@@ -2,6 +2,7 @@ use super::{super::models, ResponseContent};
 use super::{ContentType, Error, configuration};
 use reqwest;
 use serde::{Deserialize, Serialize, de::Error as _};
+use tracing::Instrument;
 
 /// Error types that can be returned by the eligibility check API.
 ///
@@ -128,10 +129,40 @@ pub async fn eligibility_check(
     req_builder = req_builder.json(&p_eligibility_check_request_content);
 
     let mut req = req_builder.build()?;
-    if let Some(ref interceptor) = configuration.request_interceptor {
-        interceptor(&mut req);
+
+    let span = if let Some(ref ps) = configuration.peer_service {
+        let method = req.method().to_string();
+        let url = req.url().to_string();
+        tracing::info_span!(
+            "http.client.request",
+            otel.name = %method,
+            otel.kind = "client",
+            http.request.method = %method,
+            url.full = %url,
+            server.address = req.url().host_str().unwrap_or("unknown"),
+            peer.service = %ps,
+            http.response.status_code = tracing::field::Empty,
+            otel.status_code = tracing::field::Empty,
+        )
+    } else {
+        tracing::Span::none()
+    };
+
+    let resp = async {
+        if let Some(ref interceptor) = configuration.request_interceptor {
+            interceptor(&mut req);
+        }
+        configuration.client.execute(req).await
     }
-    let resp = configuration.client.execute(req).await?;
+    .instrument(span.clone())
+    .await?;
+
+    if configuration.peer_service.is_some() {
+        span.record("http.response.status_code", resp.status().as_u16());
+        if resp.status().is_server_error() {
+            span.record("otel.status_code", "ERROR");
+        }
+    }
 
     let status = resp.status();
     let content_type = resp

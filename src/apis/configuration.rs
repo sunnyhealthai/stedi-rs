@@ -68,6 +68,12 @@ pub struct Configuration {
     /// Optional callback invoked on every outbound request before it is sent.
     /// Useful for injecting trace-context or other cross-cutting headers.
     pub request_interceptor: Option<RequestInterceptor>,
+
+    /// When set, every outbound request is wrapped in a `tracing` span with
+    /// `otel.kind = "client"` and `peer.service` set to this value. The
+    /// `request_interceptor` (if any) runs inside the span so that injected
+    /// trace-context headers carry the client span as parent.
+    pub peer_service: Option<String>,
 }
 
 impl std::fmt::Debug for Configuration {
@@ -149,6 +155,7 @@ impl Default for Configuration {
             bearer_access_token: None,
             api_key: None,
             request_interceptor: None,
+            peer_service: None,
         }
     }
 }
